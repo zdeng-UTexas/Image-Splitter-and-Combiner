@@ -10,9 +10,9 @@ from PIL import ImageFilter
 import os
 
 # Paths to the CSV files
-images_csv_path = '/home/dengzy/AEROPlan_Dataset/Costmap/embeddings_256_testing.csv'
-values_csv_path = '/home/dengzy/AEROPlan_Dataset/Costmap/embeddings_256_predictive_cost.csv'
-output_dir = '/home/dengzy/AEROPlan_Dataset/Costmap/Processed_Images'  # User-specified output directory
+images_csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240302/testing/embedding_of_patch_64.csv'
+values_csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240302/testing/predicted_cost_of_patch_64.csv'
+output_dir = '/home/zhiyundeng/AEROPlan/experiment/20240302/splitted_costmap'  # User-specified output directory
 
 # Ensure output directory exists
 os.makedirs(output_dir, exist_ok=True)

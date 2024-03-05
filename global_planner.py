@@ -6,13 +6,18 @@ import matplotlib.colors as mcolors
 
 
 # Load the CSV file into a DataFrame
-values_csv_path = '/home/dengzy/AEROPlan_Dataset/Costmap/embeddings_256_predictive_cost.csv'
+values_csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240302/testing/predicted_cost_of_patch_64.csv'
+
+
+save_directory = '/home/zhiyundeng/AEROPlan/experiment/20240302/'
+filename = 'global_planning_costmap.png'
+save_path = save_directory + filename
 
 df = pd.read_csv(values_csv_path, header=None)
 
 # Dynamically determine the grid dimensions based on the CSV data
 total_elements = df.size
-grid_rows = 14  # Adjust this based on your actual data
+grid_rows = 57  # Adjust this based on your actual data
 grid_columns = total_elements // grid_rows
 grid = df.values.reshape((grid_rows, grid_columns))
 
@@ -144,7 +149,7 @@ def visualize_path_with_custom_background(grid, path, start, goal):
     norm = mcolors.BoundaryNorm(bounds, cmap.N)
 
     # Plot the grid with the custom colormap
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(25, 18))
     plt.imshow(grid, cmap=cmap, norm=norm, origin='upper')
 
     # Extract x and y coordinates from the path
@@ -169,9 +174,12 @@ def visualize_path_with_custom_background(grid, path, start, goal):
 
     # Show the plot
     plt.show()
+    plt.savefig(save_path)
+    print('saved')
+    plt.close()
 
 # Example usage
-start, goal = (2,14), (10,5)  # Adjust these points based on your grid and requirements
+start, goal = (13,0), (56,31)  # Adjust these points based on your grid and requirements
 came_from, cost_so_far = a_star_search(grid, start, goal)
 path = reconstruct_path(came_from, start, goal)
 
