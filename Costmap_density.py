@@ -28,22 +28,21 @@ def value_to_intensity(value):
         3: 255     # Black
     }[value]
 
-def convert_to_color(image_path, value, output_dir, blur_radius=2):
-    # Convert an image to a specific shade of gray based on its value.
+def convert_to_density_map(image_path, value, output_dir):
+    # Convert an image's intensity based on its value, then apply Gaussian blur
     intensity = value_to_intensity(value)
     with Image.open(image_path) as img:
         # Convert image to grayscale
         gray_img = img.convert('L')
-        # Apply the intensity
+        # Apply the initial intensity
         np_img = np.array(gray_img)
         np_img[:] = intensity
-        temp_img = Image.fromarray(np_img)
-        # Apply Gaussian Blur to simulate density effect
-        blurred_img = temp_img.filter(ImageFilter.GaussianBlur(blur_radius))
+        pre_blur_img = Image.fromarray(np_img)
+        # Apply Gaussian blur to create a density effect
+        blurred_img = pre_blur_img.filter(ImageFilter.GaussianBlur(radius=5))  # Adjust the radius as needed
         # Save the modified image to the specified output directory
         blurred_img.save(os.path.join(output_dir, os.path.basename(image_path)))
 
-
-# Process each image
+# Process each image with the new function
 for img_path, value in mapped_values.items():
-    convert_to_color(img_path, value, output_dir)
+    convert_to_density_map(img_path, value, output_dir)
