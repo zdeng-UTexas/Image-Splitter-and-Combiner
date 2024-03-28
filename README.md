@@ -81,6 +81,45 @@ Patches saved and zipped at: /Users/zhiyunjerrydeng/Downloads/patches.zip
 Image reassembled and saved to: /Users/zhiyunjerrydeng/Downloads/merge.png
 ```
 
+## Downsample, split an image into grids, and combine grid images into a single image
+
+### Downsampling an Image
+The 'downsample_image.py' script resizes an image to specified dimensions. This is particularly useful for preparing images for processes that require specific input dimensions.
+
+- **Command**
+```base
+python downsample_image.py "/path/to/original/image.png" "/path/to/output/downsampled_image.png" target_width target_height
+```
+- **Example Usage**
+```base
+python downsample_image.py "/home/zdeng/aeroplan/training_dataset/texture.png" "/home/zdeng/aeroplan/training_dataset/texture_ds.png" 2500 2500
+```
+
+### Splitting an Image into a Grid
+The 'Image_Splitter_by_grid.py' script divides a downsized image into a grid of smaller images. This is useful for analyzing or processing parts of an image individually.
+
+- **Command**
+```base
+python Image_Splitter_by_grid.py "/path/to/downsampled/image.png" grid_x grid_y "/path/to/output/directory"
+```
+- **Example Usage**
+```base
+python Image_Splitter_by_grid.py "/home/zdeng/aeroplan/training_dataset/texture_ds.png" 500 500 "/home/zdeng/aeroplan/training_dataset/texture_ds_500_500"
+```
+
+### Combining Grid Images into a Single Image
+The 'Image_Combiner_by_grid.py' script reassembles a set of grid images back into the original format. This is used after processing individual grid images to reconstruct the full image.
+
+- **Command**
+```base
+python3 Image_Combiner_by_grid.py /path/to/patches /path/to/output/image.jpg
+```
+- **Example Usage**
+```base
+python3 Image_Combiner_by_grid.py /home/zdeng/aeroplan/training_dataset/texture_ds_500_500 /home/zdeng/aeroplan/training_dataset/texture_ds_combined.png
+```
+
+
 ## Contributing
 
 Feel free to fork this repository and submit pull requests to contribute to the development of these scripts.
