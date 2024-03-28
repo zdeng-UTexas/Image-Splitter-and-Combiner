@@ -4,7 +4,7 @@ This repository contains two Python scripts for splitting an image into a grid o
 
 ## Scripts
 
-- `Image_Splitter.py`: Splits a given image into smaller patches based on specified dimensions (width and height in pixels). The patches are saved with filenames indicating their position in the original image (e.g., `1_1.png` for the first row and first column), and then zipped into a single file.
+- `Image_Splitter_by_pixel.py`: Splits a given image into smaller patches based on specified dimensions (width and height in pixels). The patches are saved with filenames indicating their position in the original image (e.g., `1_1.png` for the first row and first column), and then zipped into a single file.
 
 - `Image_Combiner.py`: Takes a directory of image patches named according to their position in the original image and reassembles them into a single image file.
 
@@ -23,7 +23,7 @@ pip install Pillow
 
 ### Splitting an Image
 
-To split an image, run `Image_Splitter.py` with the following arguments:
+To split an image, run `Image_Splitter_by_pixel.py` with the following arguments:
 
 1. Path to the input image.
 2. Desired patch width in pixels.
@@ -33,7 +33,7 @@ To split an image, run `Image_Splitter.py` with the following arguments:
 Example:
 
 ```bash
-python Image_Splitter.py "/path/to/image.jpg" 512 512 "/path/to/output/directory"
+python Image_Splitter_by_pixel.py "/path/to/image.jpg" 512 512 "/path/to/output/directory"
 ```
 
 This will split `image.jpg` into 512x512 patches and save them in the specified output directory, followed by zipping these patches into a single file.
@@ -70,7 +70,7 @@ Image reassembled and saved to: /path/to/output/image.jpg
 - **Splitting an Image**
 
 ```bash
-(base) zhiyunjerrydeng@wireless-10-146-142-131 ~ % python Image_Splitter.py "/Users/zhiyunjerrydeng/Library/CloudStorage/Box-Box/University of Texas at Austin/AMRL/SARA/Aerial Imagery/EER-02072024/DJI_0432.JPG" 512 512 "/Users/zhiyunjerrydeng/Downloads/patches"
+(base) zhiyunjerrydeng@wireless-10-146-142-131 ~ % python Image_Splitter_by_pixel.py "/Users/zhiyunjerrydeng/Library/CloudStorage/Box-Box/University of Texas at Austin/AMRL/SARA/Aerial Imagery/EER-02072024/DJI_0432.JPG" 512 512 "/Users/zhiyunjerrydeng/Downloads/patches"
 Patches saved and zipped at: /Users/zhiyunjerrydeng/Downloads/patches.zip
 ```
 
