@@ -6,7 +6,8 @@ import matplotlib.colors as mcolors
 
 
 # Load the CSV file into a DataFrame
-values_csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240302/testing/predicted_cost_of_patch_64.csv'
+# values_csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240302/testing/predicted_cost_of_patch_64.csv'
+values_csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240302/testing/smoothed_predicted_cost_of_patch_64.csv'
 
 
 save_directory = '/home/zhiyundeng/AEROPlan/experiment/20240302/'
@@ -156,7 +157,7 @@ def visualize_path_with_custom_background(grid, path, start, goal):
     x_coords, y_coords = zip(*path)
 
     # Overlay the path on the grid
-    plt.plot(y_coords, x_coords, color="blue", linewidth=1.5, marker='o', markersize=4, markerfacecolor="blue")
+    plt.plot(y_coords, x_coords, color="blue", linewidth=4, marker='o', markersize=4, markerfacecolor="blue")
 
     # Highlight the start and goal positions
     plt.plot(goal[1], goal[0], 'r*', markersize=20)  # Goal in red

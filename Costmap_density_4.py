@@ -15,7 +15,6 @@ def calculate_neighborhood_average(matrix, neighborhood_size=1):
     padded_matrix = np.pad(matrix, pad_width=pad_size, mode='constant', constant_values=0)
     averaged_matrix = np.zeros(matrix.shape)
     
-    # Adjust loop ranges to accommodate for the increased neighborhood size
     for i in range(matrix.shape[0]):
         for j in range(matrix.shape[1]):
             # Defining the block size based on the neighborhood size
@@ -32,13 +31,20 @@ def create_density_map(matrix, title='Density Map', save_path='density_map_bw.pn
     plt.savefig(save_path)  # Saving the figure to the current directory
     plt.show()
 
+def save_averaged_cost_matrix_to_csv(matrix, save_path='averaged_cost_matrix.csv'):
+    # Flatten the matrix to a single column
+    flattened_matrix = matrix.flatten()
+    # Convert the flattened array to a DataFrame
+    df = pd.DataFrame(flattened_matrix)
+    # Save the DataFrame to a CSV file, maintaining the single-column format
+    df.to_csv(save_path, index=False, header=False)
+
 # Example usage
-
-
-csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240302/testing/predicted_cost_of_patch_64.csv' # Replace with your actual CSV file path
-x, y = 57, 85 # Replace with your actual dimensions
-neighborhood_size = 7  # For a 24-neighborhood, use 5 (5x5 area)
+csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240320/testing/predicted_cost_of_patch_32.csv' # Replace with your actual CSV file path
+x, y = 44, 57 # Replace with your actual dimensions
+neighborhood_size = 3  # For a 24-neighborhood, use 5 (5x5 area)
 
 cost_matrix = read_cost_values(csv_path, x, y)
 averaged_cost_matrix = calculate_neighborhood_average(cost_matrix, neighborhood_size=neighborhood_size)
 create_density_map(averaged_cost_matrix, save_path='density_map_with_neighborhood.png')
+save_averaged_cost_matrix_to_csv(averaged_cost_matrix, save_path='/home/zhiyundeng/AEROPlan/experiment/20240320/testing/smoothed_predicted_cost_of_patch_32.csv')

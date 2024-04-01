@@ -10,9 +10,9 @@ from PIL import ImageFilter
 import os
 
 # Paths to the CSV files
-images_csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240302/testing/embedding_of_patch_64.csv'
-values_csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240302/testing/predicted_cost_of_patch_64.csv'
-output_dir = '/home/zhiyundeng/AEROPlan/experiment/20240302/splitted_costmap'  # User-specified output directory
+images_csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240320/testing/embedding_of_patch_32.csv'
+values_csv_path = '/home/zhiyundeng/AEROPlan/experiment/20240320/testing/predicted_cost_of_patch_32.csv'
+output_dir = '/home/zhiyundeng/AEROPlan/experiment/20240320/splitted_costmap_32'  # User-specified output directory
 
 # Ensure output directory exists
 os.makedirs(output_dir, exist_ok=True)
@@ -31,11 +31,17 @@ def value_to_intensity(value):
         1: 85,  # Light gray
         2: 170,   # Dark gray
         3: 255     # Black
+        # 0: 0
+        # 10: 10
+        # 80: 80
+        # 160: 160
+        # 254: 254
     }[value]
 
 def convert_to_color(image_path, value, output_dir):
     # Convert an image to a specific shade of gray based on its value.
-    intensity = value_to_intensity(value)
+    # intensity = value_to_intensity(value)
+    intensity = value
     with Image.open(image_path) as img:
         # Convert image to grayscale
         gray_img = img.convert('L')
